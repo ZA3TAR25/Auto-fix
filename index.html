@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>AutoFix Repair System</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="topbar">
+    <div class="logo">AutoFix<span>Repair</span></div>
+    <nav class="nav">
+        <button data-target="homeSection" class="nav-link active">Home</button>
+        <button data-target="serviceSection" class="nav-link">Book Service</button>
+        <button data-target="authSection" class="nav-link">Login / Register</button>
+        <button data-target="dashboardSection" class="nav-link">Dashboard</button>
+    </nav>
+</header>
+
+<main>
+    <!-- HOME -->
+    <section id="homeSection" class="section visible">
+        <h1>Welcome to AutoFix Repair System</h1>
+        <p class="subtitle">
+            Manage customers, repair orders, inventory, and billing in one place.
+        </p>
+
+        <div class="cards">
+            <div class="card">
+                <h2>Customers</h2>
+                <p>Register, book repair services, and track your car history.</p>
+            </div>
+            <div class="card">
+                <h2>Receptionist</h2>
+                <p>Capture service requests and create work orders for technicians.</p>
+            </div>
+            <div class="card">
+                <h2>Technicians</h2>
+                <p>View assigned jobs, record parts used, and update repair status.</p>
+            </div>
+            <div class="card">
+                <h2>Manager / Admin</h2>
+                <p>Monitor inventory, revenues, and generate management reports.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- AUTH -->
+    <section id="authSection" class="section">
+        <div class="auth-container">
+            <div class="auth-card">
+                <h2>Register</h2>
+                <form id="registerForm">
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="regName">Full Name</label>
+                            <input id="regName" type="text" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="regEmail">Email</label>
+                            <input id="regEmail" type="email" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="regPhone">Phone</label>
+                            <input id="regPhone" type="tel" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="regRole">Role</label>
+                            <select id="regRole" required>
+                                <option value="">Select role</option>
+                                <option value="customer">Customer</option>
+                                <option value="receptionist">Receptionist</option>
+                                <option value="technician">Technician</option>
+                                <option value="manager">Manager</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid-2 customer-extra hidden" id="customerExtra">
+                        <div class="form-group">
+                            <label for="regCarModel">Car Model</label>
+                            <input id="regCarModel" type="text" />
+                        </div>
+                        <div class="form-group">
+                            <label for="regPlate">Plate Number</label>
+                            <input id="regPlate" type="text" />
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="regPassword">Password</label>
+                            <input id="regPassword" type="password" minlength="4" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="regConfirm">Confirm Password</label>
+                            <input id="regConfirm" type="password" minlength="4" required/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn primary">Create Account</button>
+                    </div>
+                    <p class="form-message" id="registerMessage"></p>
+                </form>
+            </div>
+
+            <div class="auth-card">
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input id="loginEmail" type="email" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input id="loginPassword" type="password" required/>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn secondary">Login</button>
+                    </div>
+                    <p class="form-message" id="loginMessage"></p>
+                </form>
+
+                <div class="logged-user hidden" id="loggedUserBox">
+                    <p><strong>Logged in as:</strong> <span id="loggedUserName"></span> (<span id="loggedUserRole"></span>)</p>
+                    <button id="logoutBtn" class="btn danger small">Logout</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICE REQUEST -->
+    <section id="serviceSection" class="section">
+        <h2>Create Service Request</h2>
+        <p class="subtitle">Receptionist or customer can create a new repair order.</p>
+
+        <form id="serviceForm" class="card form-card">
+            <div class="grid-3">
+                <div class="form-group">
+                    <label for="srvCustomerName">Customer Name</label>
+                    <input id="srvCustomerName" type="text" required/>
+                </div>
+                <div class="form-group">
+                    <label for="srvCarModel">Car Model</label>
+                    <input id="srvCarModel" type="text" required/>
+                </div>
+                <div class="form-group">
+                    <label for="srvPlate">Plate Number</label>
+                    <input id="srvPlate" type="text" required/>
+                </div>
+            </div>
+
+            <div class="grid-3">
+                <div class="form-group">
+                    <label for="srvType">Service Type</label>
+                    <select id="srvType" required>
+                        <option value="">Select service</option>
+                        <option>Oil Change</option>
+                        <option>General Checkup</option>
+                        <option>Engine Repair</option>
+                        <option>Brake Service</option>
+                        <option>Electrical Issue</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="srvDate">Preferred Date</label>
+                    <input id="srvDate" type="date" required/>
+                </div>
+                <div class="form-group">
+                    <label for="srvStatus">Status</label>
+                    <select id="srvStatus">
+                        <option>Received</option>
+                        <option>In Progress</option>
+                        <option>Completed</option>
+                        <option>Delivered</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="srvNotes">Problem Description / Notes</label>
+                <textarea id="srvNotes" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn primary">Save Order</button>
+            </div>
+            <p class="form-message" id="serviceMessage"></p>
+        </form>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section id="dashboardSection" class="section">
+        <h2>Workshop Dashboard</h2>
+
+        <div class="dashboard-grid">
+            <!-- Orders table -->
+            <div class="card">
+                <h3>Repair Orders</h3>
+                <table class="table" id="ordersTable">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Customer</th>
+                        <th>Car</th>
+                        <th>Plate</th>
+                        <th>Service</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Filled by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Simple inventory mock -->
+            <div class="card">
+                <h3>Inventory Snapshot</h3>
+                <ul class="inventory-list" id="inventoryList">
+                    <!-- Filled by JS -->
+                </ul>
+            </div>
+
+            <!-- Simple finance summary mock -->
+            <div class="card">
+                <h3>Financial Overview (Demo)</h3>
+                <p>Total Orders: <span id="totalOrders">0</span></p>
+                <p>Estimated Revenue: <span id="estimatedRevenue">$0</span></p>
+                <small>* Demo calculation: each order = $150</small>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    &copy; <span id="year"></span> AutoFix Repair System – educational prototype.
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
